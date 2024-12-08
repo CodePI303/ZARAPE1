@@ -1,0 +1,194 @@
+<!doctype html>
+<html lang="en">
+    <head>
+        <title>Administrar Platillos</title>
+        <meta charset="utf-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+        <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+        <link href="https://fonts.googleapis.com/css?family=Poppins:300,400,500,600,700,800,900" rel="stylesheet">
+
+        <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
+
+        <link href="../../css/style.css" rel="stylesheet" type="text/css"/>
+        <link href="../../../style/fontawesome-free-6.4.0-web/css/all.css" rel="stylesheet" type="text/css"/>
+        <style type="text/css" media="screen">
+            :root {
+                --color-green: #00a878;
+                --color-red: #fe5e41;
+                --color-button: #fdffff;
+                --color-black: #000;
+            }
+            .switch-button {
+                display: inline-block;
+            }
+            .switch-button .switch-button__checkbox {
+                display: none;
+            }
+            .switch-button .switch-button__label {
+                background-color: var(--color-green);
+                width: 2rem;
+                height: 1rem;
+                border-radius: 3rem;
+                display: inline-block;
+                position: relative;
+            }
+            .switch-button .switch-button__label:before {
+                transition: .2s;
+                display: block;
+                position: absolute;
+                width: 1rem;
+                height: 1rem;
+                background-color: var(--color-button);
+                content: '';
+                border-radius: 50%;
+                box-shadow: inset 0px 0px 0px 1px var(--color-black);
+            }
+            .switch-button .switch-button__checkbox:checked + .switch-button__label {
+                background-color: var(--color-red);
+            }
+            .switch-button .switch-button__checkbox:checked + .switch-button__label:before {
+                transform: translateX(1rem);
+            }
+
+
+        </style>
+    </head>
+    <body onload="cargarPlatillos()">
+
+        <div class="wrapper d-flex align-items-stretch">
+            <nav id="sidebar" style="background-color: #805a3b;">
+                <div class="custom-menu">
+                    <button type="button" id="sidebarCollapse" class="btn btn-primary" >
+                        <i class="fa fa-bars" style="background-color: #FEF3E2; color: #FA4032"></i>
+                        <span class="sr-only"></span>
+                    </button>
+                </div>
+
+                <div class="p-4">
+                    <h1><a href="index.html" class="logo"><img src="../../../images/logo2.png" alt="" style="width: 80px;height: 90px"/>El zarape <span style="color: white">Administrador</span></a></h1>
+                    <ul class="list-unstyled components mb-5">
+                        <li><a href="adm_platillos.html"><span class="fa-solid fa-mortar-pestle mr-3"></span> Platillos</a></li>
+                        <li><a href="../../moduloBebidas/adm_bebida/administradorBebida.html"><span class="fa-solid fa-mug-hot mr-3"></span> Bebidas</a></li>
+                        <li><a href="../../moduloCombos/adm_combos/administradorCombos.html"><span class="fa-solid fa-mortar-pestle mr-1"></span><span class="fa-solid fa-mug-hot"></span> Combos</a></li>
+                        <li><a href="../../moduloSocursales/adm_sucursal/administradorSucursal.html"><span class="fa-solid fa-shop mr-3"></span> Sucursales</a></li>
+                        <li><a href="../../moduloUsuario/administradorUsuario.html"><span class="fa-solid fa-briefcase mr-3"></span> Empleados</a>
+                    </ul>
+                </div>
+            </nav>
+
+            <div id="content" style="background-color: #FEF3E2;" class="row">
+                <!-- <div id="content" style="background-color: #FEF3E2" class="p-4 p-md-5 pt-5">comment -->
+
+                <div class="container-fluid" style="background-color: #FA4032; height: 40px; text-align: center">
+                    <h3 style="color: white;">Administrar Platillos</h3>
+                </div>
+                <div class="container-fluid" style="background-color: ">
+                    <div class="row">
+                        <div class="col-md-6">
+                            <div class="col">
+                                <h2>Registro de Platillos</h2>
+                                <form>
+                                    <div class="mb-3">
+                                        <label for="nombreProducto" class="form-label">Nombre</label>
+                                        <input type="text" class="form-control" id="nombreProducto" name="nombreProducto" placeholder="Ingresa el nombre del Platillo" >
+                                    </div>
+                                    <div class="mb-3">
+                                        <label for="fotoProducto" class="form-label">Foto</label>
+                                        <input type="file" class="form-control" id="fotoProducto" name="fotoProducto">
+                                    </div>
+                                    <div class="mb-3">
+                                        <label for="descripcionProducto" class="form-label">Descripción</label>
+                                        <textarea class="form-control" id="descripcionProducto" name="descripcionProducto" placeholder="Describe el contenido del Platillo"></textarea>
+                                    </div>
+                                    <div class="mb-3">
+                                        <label for="precioProducto" class="form-label">Precio</label>
+                                        <input type="text" class="form-control" id="precioProducto" name="precioProducto" placeholder="ejemplo: $25"> 
+                                    </div>
+                                    <div class="mb-3">
+                                        <label for="categoriaPlatillos" class="form-label">Categoría</label>
+                                        <select name="categoriaPlatillos" class="form-control" id="categoriaPlatillos">
+                                            <option value=1>Entradas</option>
+                                            <option value=2>Sopas y Caldos</option>
+                                            <option value=3>Platos Principales</option>
+                                        </select>
+                                    </div>
+                                    <!--    <div class="mb-3">
+                                        <label for="estatus" class="form-label">Estatus</label>
+                                        <select name="estatus" class="form-control" id="estatus">
+                                            <option value="1">Activo</option>
+                                            <option value="0">Inactivo</option>
+                                        </select>
+                                    </div> -->
+
+                                    <div class="text-end">
+                                        <button type="button" class="btn" style="background-color:#faaf08" onclick="agregarPlatillo()">Agregar</button>
+                                        <button type="button" class="btn" style="background-color:#fa812f" onclick="modificarAlimento()">Modificar</button>
+                                        <button type="button" class="btn" style="background-color:#fa4032" onclick="eliminarPlatillo()">Eliminar</button>
+                                        <button type="button" class="btn" style="background-color:#fa4032" onclick="activarPlatillo()">Activar</button>
+                                        <button type="button" class="btn" style="background-color:#fa4032" onclick="limpiar()">Limpiar</button>
+                                    </div>
+                                </form>
+                            </div>
+                        </div>
+                        <div class="col-md-6 ">
+                            <h2>Lista de Platillos</h2>
+
+                            <div class=" col-6 table-container p-2">
+
+                                <div class="input-group-append p-0 ">
+
+                                    <!-- Campo de búsqueda -->
+                                    <input type="text" class="form-inline" id="campoBusqueda" placeholder="Buscar platillo por nombre">
+                                    <button class="btn" type="button" onclick="buscarPlatillo();" style="background: #fa812f">Buscar</button>
+
+
+                                </div>
+                                <br>
+
+                                <div class="switch-button ">
+                                    <input type="checkbox" name="switch-button" id="switch-label" class="switch-button__checkbox" onclick="cargarPlatillos()">
+                                    <label  for="switch-label" class="switch-button__label" id="txtEstatus" ></label>
+
+                                </div>
+                            </div>
+                            <div class="table-responsive small" style="max-height: 400px; overflow-y: auto;">
+                                <table class="table table-striped ">
+                                    <thead>
+                                        <tr>
+                                            <th>Nombre</th>                            
+                                            <th>Foto</th>
+                                            <th>Descripción</th>
+                                            <th>Precio</th>
+                                            <th>Categoría</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody id="tablaP">
+
+                                        <tr>
+                                            <td></td>
+                                            <td><img src="" alt="" width="50" ></td>
+                                            <td></td>
+                                            <td></td>
+                                            <td></td>
+                                        </tr>
+                                        <tr>
+                                            <td></td>
+                                            <td><img src="" alt="" width="50"></td>
+                                            <td></td>
+                                            <td></td>
+                                            <td></td>
+                                        </tr>
+                                    </tbody>
+                                </table>
+                            </div>
+                        </div>
+                    </div>
+
+                </div>
+                <script src="../../../js/jquery.min.js"></script>
+                <script src="../../../js/popper.js"></script>
+                <script src="../../../js/bootstrap.min.js"></script>
+                <script src="../../../js/main.js"></script>
+                <script src="platillos.js" type="text/javascript"></script>
+                </body>
+                </html>

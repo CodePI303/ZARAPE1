@@ -1,0 +1,107 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>El Zarape</title>
+    <meta name="description" content="Restaurante El Zarape">
+    <meta name="keywords" content="CodePI, El Zarape">
+    <meta name="author" content="CodePI">
+
+    <!-- Bootstrap CSS -->
+    <link href="style/bootstrap/css/bootstrap.min.css" rel="stylesheet" type="text/css"/>
+    <script src="style/bootstrap/js/bootstrap.bundle.min.js" type="text/javascript"></script>
+    
+    <!-- FontAwesome -->
+    <link href="style/fontawesome-free-6.4.0-web/css/all.css" rel="stylesheet" type="text/css"/>
+    
+    <!-- SweetAlert2 -->
+    <script src="style/sweetalert2/sweetalert2.all.js" type="text/javascript"></script>
+    
+    <!-- Main Script -->
+    <script src="JS/main.js"></script>
+    
+    <style>
+        /* Paleta de colores personalizada */
+        body {
+            background-color: #FEF2E4;
+            color: #805A3B;
+            margin: 0;
+        }
+
+        /* Barra lateral con nuevo color #805A3B */
+        .sidebar {
+            background-color: #805A3B;
+            color: white;
+            height: 100vh;
+            padding-top: 20px;
+            position: fixed; /* Mantener la barra lateral fija */
+            top: 0;
+            left: 0;
+            width: 200px;
+            z-index: 1000; /* Asegura que la barra lateral esté por encima */
+            text-align: center; /* Centra el contenido del sidebar */
+        }
+
+        .sidebar img {
+            width: 100px; /* Ajusta el tamaño de la imagen */
+            height: auto;
+            margin-bottom: 15px; /* Espacio entre la imagen y el texto */
+        }
+
+        .sidebar a {
+            color: white;
+            padding: 10px;
+            text-decoration: none;
+            display: block;
+        }
+
+        .sidebar a:hover {
+            background-color: #FD974F;
+        }
+
+        /* Contenido principal */
+        .main-content {
+            margin-left: 200px; /* Deja espacio para la barra lateral */
+            padding: 20px;
+        }
+
+        .btn-custom {
+            background-color: #FD974F;
+            color: white;
+        }
+
+        .btn-custom:hover {
+            background-color: #C60000;
+        }
+
+        /* Custom styles */
+        #maincontent {
+            margin-left: 200px; /* Espacio para la barra lateral */
+            padding: 20px;
+        }
+    </style>
+</head>
+<body onload="cargarInicio();">
+
+    <!-- Barra lateral (Sidebar) -->
+    <div class="sidebar">
+        <!-- Imagen del logo -->
+        <img src="images/logo.png" alt="Logo El Zarape"/><br>
+        <a href="#" onclick="cargarModuloEmpleado();">Empleados</a>
+        <a href="#" onclick="cargarModuloCliente();">Cliente</a>
+        <a href="#" onclick="cargarModuloPlatillo()">Platillos</a>
+        <a href="#">Bebidas</a>
+        <a href="#">Combos</a>
+        <a href="#" onclick="cargarModuloSucursal()">Sucursales</a>
+
+    </div>
+
+    <!-- Contenido principal -->
+    <div id="maincontent" class="main-content">
+        <button class="btn btn-custom" onclick="cargarInicio();">Inicio</button>
+        <div id="contenido"></div> <!-- Aquí se cargará el contenido según las opciones del menú -->
+    </div>
+
+</body>
+</html>

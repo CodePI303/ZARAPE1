@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<div>
+    <h1>EMPLEADOS</h1>
+    <form>
+        <label class="switch">
+          <input type="checkbox" id="estatusSwitch" checked>
+          <span class="slider"></span>
+        </label><br>
+        <label for="id">Id</label><input type="text" id="id" disabled><br>
+        <label for="nombre">Nombre</label><input type="text" id="nombre"><br>
+        <label for="apellidos">Apellidos</label><input type="text" id="apellidos"><br>
+        <label for="tel">Telefono</label><input type="text" id="tel"><br>
+        <label for="user">Nombre de usuario</label><input type="text" id="user"><br>
+        <label for="pass">Contraseña</label><input type="password" id="pass"><br>
+            <p>Estados:
+            <select id="estados" onchange="loadCiudades();">
+                <option value="">Selecciona un estado</option>
+            </select>
+            Ciudades:
+            <select id="ciudades">
+                <option value="">Selecciona una ciudad</option>
+            </select></p>
+            <p>Sucursal:</p>
+            <select id="sucursales" onchange="loadSucursales();"> 
+                <option value="">Selecciona una sucursal</option>
+            </select><br><br>
+            
+        <button type="button" onclick="controladorGral.agregarEmpleado();">Agregar</button>
+        <button type="button" onclick="controladorGral.actualizarEmpleado();">Actualizar</button>
+        <button type="button" onclick="controladorGral.eliminarEmpleado();">Eliminar</button>
+        <button type="button" onclick="controladorGral.limpiarEmpleado();">Limpiar</button>
+    </form>
+</div>
+
+<div>
+    <table border="1" cellpadding="1">
+        <thead>
+            <tr>
+            <th>NOMBRE</th>
+            <th>APELLIDO</th>
+            <th>TELÉFONO</th>
+            <th>CIUDAD</th>
+            <th>SUCURSAL</th>
+            <th>USUARIO</th>
+            <th>CONTRASEÑA</th>
+            </tr>
+        </thead>
+        <tbody id="renglones">
+
+        </tbody>
+    </table>
+</div>

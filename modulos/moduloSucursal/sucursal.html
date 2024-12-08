@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<div>
+    <h1>SUCURSAL</h1>
+    <form action="action">
+        <label for="id">Id</label><input type="text" id="id" disabled><br>
+        <label for="nombre">Nombre</label><input type="text" id="nombre"><br>
+        <label for="latitud">Latitud</label><input type="text" id="latitud"><br>
+        <label for="longitud">Longitud</label><input type="text" id="longitud"><br>
+        <label for="url">URL</label><input type="url" id="url"><br>
+        <label for="horarios">Horarios</label><input type="text" id="horarios"><br>
+        <label for="calle">Calle</label><input type="text" id="calle"><br>
+        <label for="numCalle">NumCalle</label><input type="text" id="numCalle"><br>
+        <label for="colonia">Colonia</label><input type="text" id="colonia"><br>
+        Estados:
+        <select id="estados" onchange="loadCiudades();">
+        </select>
+        Ciudades:
+        <select id="ciudades">
+        </select><br><br>
+        <img id="foto">
+        <input type="file" id="inputFileFotoSucursal"><br>
+        <textarea id="txtaFoto" rows="10" cols="100"></textarea>
+        <button type="button" id="btnCargarFoto" style="display: none">Boton</button><br>
+        
+        <button type="button" onclick="controladorGral.agregarSucursal();">Agregar</button>
+        <button type="button" onclick="controladorGral.actualizarSucursal();">Actualizar</button>
+        <button type="button" onclick="controladorGral.eliminarSucursal();">Eliminar</button>
+        <button type="button" onclick="controladorGral.limpiarCliente();">Limpiar</button>
+    </form>
+</div>
+
+<div>
+    <table border="1" cellpadding="1">
+        <thead>
+            <tr>
+            <th>NOMBRE</th>
+            <th>FOTO</th>
+            <th>LATITUD</th>
+            <th>LONGITUD</th>            
+            <th>URL</th>
+            <th>HORARIOS</th>
+            <th>CIUDAD</th>
+            <th>CALLE</th>
+            <th>NUMCALLE</th>
+            <th>COLONIA</th>
+            </tr>
+        </thead>
+        <tbody id="renglones">
+
+        </tbody>
+    </table>
+</div>

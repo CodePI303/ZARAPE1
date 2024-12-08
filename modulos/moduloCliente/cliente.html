@@ -1,0 +1,213 @@
+<!DOCTYPE html>
+<style>
+    /* Paleta de colores personalizada */
+    body {
+        background-color: #FEF2E4;
+        color: #805A3B;
+        font-family: Arial, sans-serif;
+        margin: 0;
+    }
+
+    h1 {
+        color: white;
+    }
+
+    /* Encabezado de la sección Clientes */
+    .clientes-header {
+        background-color: #C60000;
+        color: white;
+        padding: 10px; /* Reducir el padding */
+        text-align: center;
+        width: 85.5%; /* El encabezado ocupa el 70% del ancho de la página */
+        position: fixed;
+        top: 0;
+        right: 0; /* Alinea el encabezado al borde derecho */
+        z-index: 1000;
+        height: 60px; /* Definimos un alto fijo más pequeño */
+        line-height: 40px; /* Centra el texto verticalmente */
+        overflow: hidden; /* Evita que el contenido se desborde */
+        font-family: 'Arial', sans-serif; /* Fuente igual a la de El Zarape */
+        font-size: 24px; /* Ajuste de tamaño de la fuente */
+    }
+
+    .container {
+        max-width: 1200px;
+        margin: 0 auto;
+        padding-top: 80px; /* Ajustamos el espacio adicional para el header más pequeño */
+    }
+
+    .form-container {
+        /*background-color: #FD974F;*/
+        padding: 20px;
+        border-radius: 8px;
+        /*box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.1);*/
+    }
+
+    .form-container label {
+        font-weight: bold;
+    }
+
+    .form-container input, .form-container select {
+        width: 100%;
+        padding: 8px;
+        margin: 5px 0;
+        border-radius: 4px;
+        border: 1px solid #ccc;
+    }
+
+    .form-container button {
+        background-color: #FD974F;
+        color: white;
+        border: none;
+        padding: 10px 20px;
+        border-radius: 4px;
+        margin-right: 10px;
+        cursor: pointer;
+    }
+
+    .form-container button:hover {
+        background-color: #C60000;
+    }
+
+    .switch {
+        position: relative;
+        display: inline-block;
+        width: 60px;
+        height: 34px;
+    }
+
+    .switch input { 
+        opacity: 0;
+        width: 0;
+        height: 0;
+    }
+
+    .slider {
+        position: absolute;
+        cursor: pointer;
+        top: 0;
+        left: 0;
+        right: 0;
+        bottom: 0;
+        background-color: #C60000;
+        transition: 0.4s;
+        border-radius: 34px;
+    }
+
+    .slider:before {
+        position: absolute;
+        content: "";
+        height: 26px;
+        width: 26px;
+        border-radius: 50%;
+        left: 4px;
+        bottom: 4px;
+        background-color: #805A3B;
+        transition: 0.4s;
+    }
+
+    input:checked + .slider {
+        background-color: #FD974F;
+    }
+
+    input:checked + .slider:before {
+        transform: translateX(26px);
+    }
+
+    table {
+        width: 100%;
+        margin-top: 30px;
+        border-collapse: collapse;
+    }
+
+    table, th, td {
+        border: 1px solid #C60000;
+    }
+
+    th, td {
+        padding: 10px;
+        text-align: center;
+    }
+
+    th {
+        background-color: #FD974F;
+        color: white;
+    }
+
+    tbody tr:nth-child(even) {
+        background-color: #FEF2E4;
+    }
+
+    tbody tr:hover {
+        background-color: #F0F0F0;
+    }
+
+    /* Tabla responsiva */
+    .table-responsive {
+        overflow-x: auto;
+    }
+</style>
+
+<!-- Encabezado de la sección Clientes -->
+<div>
+    <h1 style="color: #805A3B;">Administrar Clientes</h1>
+</div>
+
+<div class="container mt-5">
+    <!-- Fila para contener el formulario y la tabla lado a lado -->
+    <div class="row">
+        <!-- Columna para el formulario -->
+        <div class="col-md-6">
+            <h2>Registro de Clientes</h2> <!-- Título para el formulario -->
+            <div class="form-container">
+                <form>
+                    <label for="id">Id</label><input type="text" id="id" disabled><br>
+                    <label for="nombre">Nombre</label><input type="text" id="nombre"><br>
+                    <label for="apellidos">Apellidos</label><input type="text" id="apellidos"><br>
+                    <label for="tel">Telefono</label><input type="text" id="tel"><br>
+                    <label for="user">Nombre de usuario</label><input type="text" id="user"><br>
+                    <label for="pass">Contraseña</label><input type="password" id="pass"><br>
+                    Estados:
+                    <select id="estados" onchange="loadCiudades();">
+                        <option value="">Selecciona un estado</option>
+                    </select>
+                    Ciudades:
+                    <select id="ciudades">
+                        <option value="">Selecciona una ciudad</option>
+                    </select><br><br>
+
+                    <button type="button" onclick="controladorGral.agregarCliente();">Agregar</button>
+                    <button type="button" onclick="controladorGral.actualizarCliente();">Actualizar</button>
+                    <button type="button" onclick="controladorGral.eliminarCliente();">Eliminar</button>
+                    <button type="button" onclick="controladorGral.limpiarCliente();">Limpiar</button>
+                </form>
+            </div>
+        </div>
+
+        <!-- Columna para la tabla -->
+        <div class="col-md-6">
+            <h2>Lista de Clientes</h2> <!-- Título para la tabla -->
+            <label class="switch">
+                        <input type="checkbox" id="estatusSwitch" checked>
+                        <span class="slider"></span>
+                    </label><br>
+            <div class="table-responsive">
+                <table>
+                    <thead>
+                        <tr>
+                            <th>NOMBRE</th>
+                            <th>APELLIDO</th>
+                            <th>TELÉFONO</th>
+                            <th>CIUDAD</th>
+                            <th>USUARIO</th>
+                            <th>CONTRASEÑA</th>
+                        </tr>
+                    </thead>
+                    <tbody id="renglones">
+                        <!-- Aquí se llenarán las filas de la tabla -->
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+</div>
